@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.SignalOne" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/panico</item>
+        <item name="colorPrimaryVariant">@color/panico_dark</item>
+        <item name="colorOnPrimary">@color/blanco</item>
+        <item name="colorSecondary">@color/alerta</item>
+        <item name="android:windowBackground">@color/fondo_base</item>
+        <item name="android:statusBarColor">@color/fondo_base</item>
+        <item name="android:navigationBarColor">@color/fondo_base</item>
+    </style>
+
+    <style name="Theme.SignalOne.Form" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/panico</item>
+        <item name="android:windowBackground">@color/fondo_form</item>
+        <item name="android:statusBarColor">@color/panico_dark</item>
+    </style>
+</resources>

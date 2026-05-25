@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@color/fondo_form" android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@drawable/bg_gradient_rect" android:orientation="vertical"
+        android:paddingHorizontal="20dp" android:paddingTop="54dp" android:paddingBottom="26dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/inicio_sesion" android:textColor="@color/blanco"
+            android:textSize="26sp" android:textStyle="bold"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="4dp" android:text="@string/ingresa_datos"
+            android:textColor="#CCffffff" android:textSize="13sp"/>
+    </LinearLayout>
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingHorizontal="24dp"
+            android:paddingTop="24dp" android:paddingBottom="32dp">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/correo_electronico" style="@style/LabelStyle"/>
+            <EditText android:id="@+id/etCorreo" style="@style/InputStyle"
+                android:hint="correo@ejemplo.com" android:inputType="textEmailAddress"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" android:text="@string/contrasena" style="@style/LabelStyle"/>
+            <EditText android:id="@+id/etPass" style="@style/InputStyle"
+                android:hint="••••••••" android:inputType="textPassword"/>
+            <TextView android:id="@+id/btnIniciar" android:layout_width="match_parent"
+                android:layout_height="52dp" android:layout_marginTop="28dp"
+                android:background="@drawable/bg_gradient_rect" android:gravity="center"
+                android:text="@string/btn_iniciar" android:textColor="@color/blanco"
+                android:textStyle="bold" android:textSize="15sp"/>
+            <TextView android:id="@+id/tvOlvide" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="16dp"
+                android:gravity="center" android:text="@string/olvidaste"
+                android:textColor="#64748B" android:textSize="14sp"/>
+            <TextView android:id="@+id/btnGoogle" android:layout_width="match_parent"
+                android:layout_height="48dp" android:layout_marginTop="16dp"
+                android:background="@drawable/bg_google_btn" android:gravity="center"
+                android:text="G  Continuar con Google" android:textColor="#374151" android:textSize="14sp"/>
+            <TextView android:id="@+id/tvIrRegistro" android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_marginTop="24dp"
+                android:gravity="center" android:text="@string/no_tienes_cuenta"
+                android:textColor="@color/texto_secund" android:textSize="14sp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

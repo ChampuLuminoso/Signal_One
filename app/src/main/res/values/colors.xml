@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="panico">#B91C1C</color>
+    <color name="panico_dark">#991818</color>
+    <color name="alerta">#BE185D</color>
+    <color name="fondo_base">#0F172A</color>
+    <color name="superficie">#1E293B</color>
+    <color name="borde">#334155</color>
+    <color name="seguro">#15803D</color>
+    <color name="seguro_claro">#4ADE80</color>
+    <color name="aviso">#B45309</color>
+    <color name="aviso_claro">#FBBF24</color>
+    <color name="texto_claro">#F1F5F9</color>
+    <color name="texto_secund">#94A3B8</color>
+    <color name="fondo_form">#F8FAFC</color>
+    <color name="blanco">#FFFFFF</color>
+    <color name="avatar_rojo">#DC2626</color>
+    <color name="avatar_verde">#059669</color>
+    <color name="avatar_azul">#2563EB</color>
+    <color name="avatar_rosa">#BE185D</color>
+    <color name="avatar_violeta">#7C3AED</color>
+</resources>

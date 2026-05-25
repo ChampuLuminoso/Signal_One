@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SignalOne</string>
+    <string name="tagline">TU PRIMERA RESPUESTA</string>
+    <string name="desc_bienvenida">Activa una alerta de emergencia con un solo gesto y notifica a tus contactos de confianza.</string>
+    <string name="comenzar">COMENZAR</string>
+    <string name="ya_tienes_cuenta">¿Ya tienes cuenta? <font color="#B91C1C">Iniciar sesión</font></string>
+    <string name="crear_cuenta">Crear cuenta</string>
+    <string name="ingresa_datos">Ingresa tus datos para continuar</string>
+    <string name="nombre_completo">NOMBRE COMPLETO</string>
+    <string name="correo_electronico">CORREO ELECTRÓNICO</string>
+    <string name="contrasena">CONTRASEÑA</string>
+    <string name="confirmar_contrasena">CONFIRMAR CONTRASEÑA</string>
+    <string name="btn_crear_cuenta">CREAR CUENTA</string>
+    <string name="o_continua_con">o continúa con</string>
+    <string name="continuar_google">Continuar con Google</string>
+    <string name="no_tienes_cuenta">¿No tienes cuenta? Crear cuentaa</string>
+    <string name="inicio_sesion">Inicio de Sesión</string>
+    <string name="btn_iniciar">INICIAR</string>
+    <string name="olvidaste">¿Olvidaste tu Contraseña?</string>
+    <string name="recuperar_contrasena">Recuperar contraseña</string>
+    <string name="ingresa_correo_registrado">Ingresa tu correo registrado</string>
+    <string name="info_recuperar">Te enviaremos un enlace a tu correo para restablecer tu contraseña. El proceso se completa desde tu bandeja de entrada.</string>
+    <string name="btn_enviar_enlace">ENVIAR ENLACE</string>
+    <string name="recordaste">¿Recordaste tu contraseña? Iniciar sesión</string>
+    <string name="presiona_alertar">PRESIONA PARA ALERTAR</string>
+    <string name="instruccion_discreta">o botón de volumen ×5 / agitar dispositivo</string>
+    <string name="modo_discreto_activo_banner">Modo discreto activo — vol ×5 o agitar = alerta inmediata</string>
+    <string name="modo_discreto_inactivo_banner">Modo discreto inactivo</string>
+    <string name="alerta_enviada">¡ALERTA ENVIADA!</string>
+    <string name="ubicacion_tr">Ubicación compartida en tiempo real</string>
+    <string name="ubicacion_gps">Cra. 7 con Calle 45, Bogotá</string>
+    <string name="notificando">Notificando a tus contactos:</string>
+    <string name="cancelar_alerta">Cancelar alerta (falsa alarma)</string>
+    <string name="mis_contactos">Mis Contactos</string>
+    <string name="agregar_contacto">+ Agregar contacto de confianza</string>
+    <string name="sin_contactos">Sin contactos aún</string>
+    <string name="sin_contactos_desc">Agrega tu primer contacto de confianza</string>
+    <string name="historial_titulo">Historial</string>
+    <string name="historial_sub">Registro local de alertas activadas</string>
+    <string name="modo_discreto">Modo Discreto</string>
+    <string name="activa_sin_abrir">Activa sin abrir la app</string>
+    <string name="gestos_secretos">Gestos secretos para enviar la alerta sin que nadie lo note.</string>
+    <string name="boton_volumen">Botón de volumen</string>
+    <string name="boton_volumen_sub">Presiona 5 veces seguidas</string>
+    <string name="agitar">Agitar dispositivo</string>
+    <string name="agitar_sub">3 sacudidas rápidas</string>
+    <string name="bloqueada">Pantalla bloqueada</string>
+    <string name="bloqueada_sub">Funciona con pantalla apagada</string>
+    <string name="nota_discreta">Cuando se activa un gesto secreto, la alerta se envía automáticamente a todos tus contactos de confianza con tu ubicación GPS.</string>
+    <string name="sms">SMS</string>
+    <string name="enviado">Enviado</string>
+    <string name="enviando">Enviando…</string>
+    <string name="editar">Editar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="guardar">GUARDAR</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="volver">‹ Volver</string>
+    <string name="hola">Hola,</string>
+    <string name="contactos">Contactos</string>
+    <string name="historial">Historial</string>
+    <string name="discreto">Discreto</string>
+</resources>
