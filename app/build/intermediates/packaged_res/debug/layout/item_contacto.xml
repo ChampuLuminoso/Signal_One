@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp" android:background="@drawable/bg_card"
+    android:gravity="center_vertical" android:orientation="horizontal"
+    android:paddingHorizontal="16dp" android:paddingVertical="14dp">
+    <TextView android:id="@+id/tvAvatar" android:layout_width="48dp" android:layout_height="48dp"
+        android:background="@drawable/bg_avatar_circle" android:gravity="center"
+        android:textColor="@color/blanco" android:textStyle="bold" android:textSize="18sp"/>
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_marginStart="16dp" android:layout_weight="1" android:orientation="vertical">
+        <TextView android:id="@+id/tvNombre" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textColor="@color/texto_claro"
+            android:textSize="16sp" android:textStyle="bold"/>
+        <TextView android:id="@+id/tvTelefono" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginTop="3dp"
+            android:textColor="@color/texto_secund" android:textSize="13sp"/>
+    </LinearLayout>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:background="@drawable/bg_sms_badge" android:paddingHorizontal="10dp"
+        android:paddingVertical="5dp" android:text="@string/sms"
+        android:textColor="#EF4444" android:textSize="11sp" android:textStyle="bold"/>
+    <ImageView android:id="@+id/ivMenu" android:layout_width="36dp" android:layout_height="36dp"
+        android:layout_marginStart="6dp" android:src="@android:drawable/ic_menu_more"
+        android:tint="@color/texto_secund" android:contentDescription="Menu"/>
+</LinearLayout>

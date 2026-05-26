@@ -1,0 +1,4 @@
+com.signalone.app.test.app-androidTest-0 C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\build\generated\res\resValues\androidTest\debug
+com.signalone.app.test.app-mergeDebugAndroidTestResources-1 C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.signalone.app.test.app-mergeDebugAndroidTestResources-2 C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.signalone.app.test.app-merged_res-3 C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\build\intermediates\merged_res\debugAndroidTest
