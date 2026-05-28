@@ -34,15 +34,15 @@ class ContactosActivity : AppCompatActivity() {
         actualizarVista()
     }
 
+    private fun guardarYActualizar() {
+        UserPreferences.guardarContactos(this, AppState.contactos)
+        actualizarVista()
+    }
+
     private fun actualizarVista() {
         adapter.notifyDataSetChanged()
-        if (AppState.contactos.isEmpty()) {
-            b.lvContactos.visibility = View.GONE
-            b.tvEmpty.visibility = View.VISIBLE
-        } else {
-            b.lvContactos.visibility = View.VISIBLE
-            b.tvEmpty.visibility = View.GONE
-        }
+        b.lvContactos.visibility = if (AppState.contactos.isEmpty()) View.GONE  else View.VISIBLE
+        b.tvEmpty.visibility     = if (AppState.contactos.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun mostrarDialogo(editIndex: Int?) {
@@ -55,7 +55,8 @@ class ContactosActivity : AppCompatActivity() {
             setHintTextColor(Color.parseColor("#94A3B8"))
         }
         val telEt = EditText(this).apply {
-            hint = "+57 300 000 0000"; inputType = android.text.InputType.TYPE_CLASS_PHONE
+            hint = "+57 300 000 0000"
+            inputType = android.text.InputType.TYPE_CLASS_PHONE
             if (editando) setText(c!!.telefono)
             setTextColor(Color.parseColor("#F1F5F9"))
             setHintTextColor(Color.parseColor("#94A3B8"))
@@ -67,8 +68,7 @@ class ContactosActivity : AppCompatActivity() {
             addView(TextView(context).apply { text = "Nombre"; setTextColor(Color.parseColor("#94A3B8")) })
             addView(nombreEt)
             addView(TextView(context).apply {
-                text = "Teléfono"; setTextColor(Color.parseColor("#94A3B8"))
-                setPadding(0, 16, 0, 4)
+                text = "Teléfono"; setTextColor(Color.parseColor("#94A3B8")); setPadding(0, 16, 0, 4)
             })
             addView(telEt)
         }
@@ -80,13 +80,13 @@ class ContactosActivity : AppCompatActivity() {
                 val tel    = telEt.text.toString().trim()
                 if (nombre.isNotEmpty() && tel.isNotEmpty()) {
                     if (editando) {
-                        AppState.contactos[editIndex!!] = AppState.contactos[editIndex].copy(
-                            nombre = nombre, telefono = tel)
+                        AppState.contactos[editIndex!!] =
+                            AppState.contactos[editIndex].copy(nombre = nombre, telefono = tel)
                     } else {
                         val colorIdx = AppState.contactos.size % AppState.avatarColors.size
                         AppState.contactos.add(Contacto(nombre, tel, AppState.avatarColors[colorIdx]))
                     }
-                    actualizarVista()
+                    guardarYActualizar()   // ← persistir inmediatamente
                 }
             }
             .setNegativeButton(getString(R.string.cancelar), null)
@@ -98,7 +98,8 @@ class ContactosActivity : AppCompatActivity() {
             .setTitle("Eliminar contacto")
             .setMessage("¿Eliminar a ${AppState.contactos[index].nombre}?")
             .setPositiveButton(getString(R.string.eliminar)) { _, _ ->
-                AppState.contactos.removeAt(index); actualizarVista()
+                AppState.contactos.removeAt(index)
+                guardarYActualizar()   // ← persistir inmediatamente
             }
             .setNegativeButton(getString(R.string.cancelar), null)
             .show()
@@ -108,17 +109,17 @@ class ContactosActivity : AppCompatActivity() {
         ctx: Context,
         private val onAction: (Int, String) -> Unit
     ) : BaseAdapter() {
-        override fun getCount() = AppState.contactos.size
-        override fun getItem(p: Int) = AppState.contactos[p]
-        override fun getItemId(p: Int) = p.toLong()
+        override fun getCount()              = AppState.contactos.size
+        override fun getItem(p: Int)         = AppState.contactos[p]
+        override fun getItemId(p: Int)       = p.toLong()
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
             val item = ItemContactoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             val c = AppState.contactos[position]
-            item.tvAvatar.text = c.inicial
+            item.tvAvatar.text           = c.inicial
             item.tvAvatar.setBackgroundColor(c.color)
-            item.tvNombre.text   = c.nombre
-            item.tvTelefono.text = c.telefono
+            item.tvNombre.text           = c.nombre
+            item.tvTelefono.text         = c.telefono
             item.ivMenu.setOnClickListener { v ->
                 PopupMenu(v.context, v).apply {
                     menu.add(getString(R.string.editar))

@@ -1,0 +1,46 @@
+[
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_alerta.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_alerta.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_modo_discreto.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_modo_discreto.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/item_contacto_alerta.xml",
+        "source": "com.signalone.app-main-35:/layout/item_contacto_alerta.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_historial.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_historial.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_contactos.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_contactos.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_bienvenida.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_bienvenida.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_recuperar.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_recuperar.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_principal.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_principal.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_login.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_login.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/activity_registro.xml",
+        "source": "com.signalone.app-main-35:/layout/activity_registro.xml"
+    },
+    {
+        "merged": "com.signalone.app-mergeDebugResources-32:/layout/item_contacto.xml",
+        "source": "com.signalone.app-main-35:/layout/item_contacto.xml"
+    }
+]

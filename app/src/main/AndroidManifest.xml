@@ -3,13 +3,20 @@
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT"/>
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_shield"
+        android:icon="@mipmap/ic_launcher"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/ic_shield"
         android:supportsRtl="true"
         android:theme="@style/Theme.SignalOne">
 
@@ -20,13 +27,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".ui.RegistroActivity"         android:screenOrientation="portrait"/>
-        <activity android:name=".ui.LoginActivity"            android:screenOrientation="portrait"/>
-        <activity android:name=".ui.RecuperarActivity"        android:screenOrientation="portrait"/>
-        <activity android:name=".ui.PrincipalActivity"        android:screenOrientation="portrait"/>
-        <activity android:name=".ui.AlertaActivaActivity"     android:screenOrientation="portrait"/>
-        <activity android:name=".ui.ContactosActivity"        android:screenOrientation="portrait"/>
-        <activity android:name=".ui.HistorialActivity"        android:screenOrientation="portrait"/>
-        <activity android:name=".ui.ModoDiscretoActivity"     android:screenOrientation="portrait"/>
+        <activity android:name=".ui.RegistroActivity"     android:screenOrientation="portrait"/>
+        <activity android:name=".ui.LoginActivity"        android:screenOrientation="portrait"/>
+        <activity android:name=".ui.RecuperarActivity"    android:screenOrientation="portrait"/>
+        <activity android:name=".ui.PrincipalActivity"    android:screenOrientation="portrait"/>
+        <activity android:name=".ui.AlertaActivaActivity" android:screenOrientation="portrait"
+            android:showWhenLocked="true" android:turnScreenOn="true"/>
+        <activity android:name=".ui.ContactosActivity"    android:screenOrientation="portrait"/>
+        <activity android:name=".ui.HistorialActivity"    android:screenOrientation="portrait"/>
+        <activity android:name=".ui.ModoDiscretoActivity" android:screenOrientation="portrait"/>
+
+        <service android:name=".ui.PanicService"
+            android:foregroundServiceType="location"
+            android:exported="false"/>
+
     </application>
 </manifest>

@@ -15,28 +15,45 @@ class ModoDiscretoActivity : AppCompatActivity() {
 
         b.tvBack.setOnClickListener { finish() }
 
-        // Cargar estado actual (por defecto apagados)
-        b.swVolumen.isChecked   = AppState.volumenActivo
-        b.swAgitar.isChecked    = AppState.agitarActivo
-        b.swBloqueada.isChecked = AppState.bloqueadoActivo
+        // Cargar estado persistido
+        val (vol, agitar, bloqueado) = UserPreferences.cargarModoDiscreto(this)
+        AppState.volumenActivo   = vol
+        AppState.agitarActivo    = agitar
+        AppState.bloqueadoActivo = bloqueado
+
+        b.swVolumen.isChecked   = vol
+        b.swAgitar.isChecked    = agitar
+        b.swBloqueada.isChecked = bloqueado
 
         b.swVolumen.setOnCheckedChangeListener { _, v ->
             AppState.volumenActivo = v
+            persistir()
             Toast.makeText(this,
                 if (v) "✅ Botón de volumen ×5 activado" else "⭕ Botón de volumen desactivado",
                 Toast.LENGTH_SHORT).show()
         }
         b.swAgitar.setOnCheckedChangeListener { _, v ->
             AppState.agitarActivo = v
+            persistir()
             Toast.makeText(this,
                 if (v) "✅ Agitar dispositivo activado" else "⭕ Agitar desactivado",
                 Toast.LENGTH_SHORT).show()
         }
         b.swBloqueada.setOnCheckedChangeListener { _, v ->
             AppState.bloqueadoActivo = v
+            persistir()
             Toast.makeText(this,
                 if (v) "✅ Pantalla bloqueada activada" else "⭕ Pantalla bloqueada desactivada",
                 Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun persistir() {
+        UserPreferences.guardarModoDiscreto(
+            this,
+            AppState.volumenActivo,
+            AppState.agitarActivo,
+            AppState.bloqueadoActivo
+        )
     }
 }
