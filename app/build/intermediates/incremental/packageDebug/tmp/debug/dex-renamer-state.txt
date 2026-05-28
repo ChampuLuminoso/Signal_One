@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Thu May 28 10:07:29 COT 2026
+=======
+#Tue May 26 13:52:46 COT 2026
+>>>>>>> origin/main
 base.0=C\:\\Users\\Jorge\\Documents\\1 Jorge Montes\\1 Uan\\Ingenieria de software\\Apps moviles\\Sign One\\codigo\\Signal_One\\app\\build\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=C\:\\Users\\Jorge\\Documents\\1 Jorge Montes\\1 Uan\\Ingenieria de software\\Apps moviles\\Sign One\\codigo\\Signal_One\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
 base.2=C\:\\Users\\Jorge\\Documents\\1 Jorge Montes\\1 Uan\\Ingenieria de software\\Apps moviles\\Sign One\\codigo\\Signal_One\\app\\build\\intermediates\\dex\\debug\\mergeProjectDexDebug\\13\\classes.dex

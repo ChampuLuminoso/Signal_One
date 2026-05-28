@@ -923,6 +923,7 @@
           <option name="screenY" value="1840" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+<<<<<<< HEAD
           <option name="api" value="36" />
           <option name="brand" value="google" />
           <option name="codename" value="felix" />
@@ -935,6 +936,8 @@
           <option name="screenY" value="1840" />
         </PersistentDeviceSelectionData>
         <PersistentDeviceSelectionData>
+=======
+>>>>>>> origin/main
           <option name="api" value="33" />
           <option name="brand" value="google" />
           <option name="codename" value="felix_camera" />

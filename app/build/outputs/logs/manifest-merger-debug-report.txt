@@ -1,9 +1,16 @@
 -- Merging decision tree log ---
 manifest
+<<<<<<< HEAD
 ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-45:12
 INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-45:12
 INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-45:12
 INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-45:12
+=======
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:2:1-32:12
+>>>>>>> origin/main
 MERGED from [androidx.databinding:viewbinding:8.2.2] C:\Users\Jorge\.gradle\caches\transforms-3\d460d182bad700eababbb6d42aa9f3a6\transformed\jetified-viewbinding-8.2.2\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Jorge\.gradle\caches\transforms-3\c006c7e4abea24f449d8c80c9e056f58\transformed\material-1.11.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Jorge\.gradle\caches\transforms-3\2a79237028878ecf82651907de158179\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
@@ -66,6 +73,7 @@ uses-permission#android.permission.ACCESS_COARSE_LOCATION
 ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:5:5-80
 	android:name
 		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:5:22-78
+<<<<<<< HEAD
 uses-permission#android.permission.ACCESS_BACKGROUND_LOCATION
 ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:6:5-84
 	android:name
@@ -101,6 +109,15 @@ ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\
 application
 ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:15:5-44:19
 INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:15:5-44:19
+=======
+uses-permission#android.permission.SEND_SMS
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:6:5-66
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:6:22-64
+application
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:8:5-31:19
+INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:8:5-31:19
+>>>>>>> origin/main
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Jorge\.gradle\caches\transforms-3\c006c7e4abea24f449d8c80c9e056f58\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.11.0] C:\Users\Jorge\.gradle\caches\transforms-3\c006c7e4abea24f449d8c80c9e056f58\transformed\material-1.11.0\AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\Jorge\.gradle\caches\transforms-3\2a79237028878ecf82651907de158179\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
@@ -130,6 +147,7 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Jorge\.gradle\cach
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.12.0] C:\Users\Jorge\.gradle\caches\transforms-3\01be542a8a7642ecba403b94caa2bdf6\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
 	android:supportsRtl
+<<<<<<< HEAD
 		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:20:9-35
 	android:label
 		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:19:9-41
@@ -219,6 +237,85 @@ ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\
 		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:41:13-53
 	android:name
 		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:40:18-49
+=======
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:13:9-35
+	android:label
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:11:9-41
+	android:roundIcon
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:12:9-54
+	android:icon
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:10:9-43
+	android:allowBackup
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:9:9-35
+	android:theme
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:14:9-47
+activity#com.signalone.app.ui.BienvenidaActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:16:9-22:20
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:17:13-49
+	android:exported
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:16:57-80
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:16:19-56
+intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:18:13-21:29
+action#android.intent.action.MAIN
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:19:17-68
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:19:25-66
+category#android.intent.category.LAUNCHER
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:20:17-76
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:20:27-74
+activity#com.signalone.app.ui.RegistroActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:23:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:23:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:23:19-54
+activity#com.signalone.app.ui.LoginActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:24:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:24:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:24:19-51
+activity#com.signalone.app.ui.RecuperarActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:25:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:25:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:25:19-55
+activity#com.signalone.app.ui.PrincipalActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:26:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:26:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:26:19-55
+activity#com.signalone.app.ui.AlertaActivaActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:27:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:27:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:27:19-58
+activity#com.signalone.app.ui.ContactosActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:28:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:28:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:28:19-55
+activity#com.signalone.app.ui.HistorialActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:29:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:29:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:29:19-55
+activity#com.signalone.app.ui.ModoDiscretoActivity
+ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:30:9-101
+	android:screenOrientation
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:30:63-99
+	android:name
+		ADDED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml:30:19-58
+>>>>>>> origin/main
 uses-sdk
 INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Jorge\Documents\1 Jorge Montes\1 Uan\Ingenieria de software\Apps moviles\Sign One\codigo\Signal_One\app\src\main\AndroidManifest.xml
