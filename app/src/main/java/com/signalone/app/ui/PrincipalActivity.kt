@@ -53,7 +53,22 @@ class PrincipalActivity : AppCompatActivity(), SensorEventListener {
     private val notifPermLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()) {}
     private val smsPermLauncher = registerForActivityResult(
-    ActivityResultContracts.RequestPermission()) {}
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        if (granted) {
+            // Permiso concedido ahora — reintentar el envío
+            AppState.ultimaUbicacionUrl?.let { url ->
+                enviarSmsATodos(
+                    if (url.isNotEmpty())
+                        "🚨 ALERTA DE EMERGENCIA 🚨\nNecesito ayuda. Mi ubicación:\n$url"
+                    else
+                        "🚨 ALERTA DE EMERGENCIA 🚨\nNecesito ayuda. (Ubicación no disponible)"
+                )
+            }
+        } else {
+            Toast.makeText(this, "⚠️ Sin permiso SMS — solo se enviará WhatsApp", Toast.LENGTH_LONG).show()
+        }
+    }
 
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
@@ -187,41 +202,45 @@ private fun lanzarAlerta(ubicacionUrl: String?, origen: String) {
     else
         "🚨 ALERTA DE EMERGENCIA 🚨\nNecesito ayuda. (Ubicación no disponible)"
 
-    // SMS
+    // Intentar enviar SMS
     if (tienePermiso(Manifest.permission.SEND_SMS)) {
-        val smsManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-            getSystemService(SmsManager::class.java)
-        else
-            @Suppress("DEPRECATION") SmsManager.getDefault()
-
-        AppState.contactos.forEach { c ->
-            val telefonoLimpio = c.telefono.replace(Regex("[^\\d+]"), "")
-            try {
-                smsManager?.sendTextMessage(telefonoLimpio, null, mensaje, null, null)
-            } catch (e: Exception) {
-                Toast.makeText(this, "Error SMS: ${e.message}", Toast.LENGTH_LONG).show()
-            }
-        }
+        enviarSmsATodos(mensaje)
     } else {
-        Toast.makeText(this, "Sin permiso SMS", Toast.LENGTH_LONG).show()
+        // Pedir permiso en el momento crítico
+        smsPermLauncher.launch(Manifest.permission.SEND_SMS)
     }
 
-    // WhatsApp
+    // WhatsApp se maneja en AlertaActivaActivity con delays visuales
+    startActivity(Intent(this, AlertaActivaActivity::class.java))
+}
+
+private fun enviarSmsATodos(mensaje: String) {
+    val smsManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+        getSystemService(SmsManager::class.java)
+    else
+        @Suppress("DEPRECATION") SmsManager.getDefault()
+
+    var enviados = 0
     AppState.contactos.forEach { c ->
+        // Limpiar número: quitar todo excepto dígitos y +
+        val telefonoLimpio = c.telefono.replace(Regex("[^\\d+]"), "")
+        if (telefonoLimpio.isBlank()) return@forEach
         try {
-            val numero = c.telefono.replace(Regex("[^\\d+]"), "")
-            val intent = Intent(Intent.ACTION_VIEW).apply {
-                data = Uri.parse("https://wa.me/$numero?text=${Uri.encode(mensaje)}")
-                setPackage("com.whatsapp")
-                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            // Mensajes largos (>160 chars) se parten automáticamente con sendMultipartTextMessage
+            val partes = smsManager?.divideMessage(mensaje)
+            if (partes != null && partes.size > 1) {
+                smsManager.sendMultipartTextMessage(telefonoLimpio, null, partes, null, null)
+            } else {
+                smsManager?.sendTextMessage(telefonoLimpio, null, mensaje, null, null)
             }
-            startActivity(intent)
+            enviados++
         } catch (e: Exception) {
-            // WhatsApp no instalado, SMS fue enviado igual
+            android.util.Log.e("SignalOne", "Error SMS a $telefonoLimpio: ${e.message}")
         }
     }
-
-    startActivity(Intent(this, AlertaActivaActivity::class.java))
+    if (enviados == 0 && AppState.contactos.isNotEmpty()) {
+        Toast.makeText(this, "No se pudo enviar SMS — verifica los números", Toast.LENGTH_LONG).show()
+    }
 }
 
     private fun tienePermiso(p: String) =
