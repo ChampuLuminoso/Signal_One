@@ -12,21 +12,32 @@ import com.signalone.app.databinding.ActivityBienvenidaBinding
 class BienvenidaActivity : AppCompatActivity() {
     private lateinit var b: ActivityBienvenidaBinding
 
-    override fun onCreate(s: Bundle?) {
-        super.onCreate(s)
-        b = ActivityBienvenidaBinding.inflate(layoutInflater)
-        setContentView(b.root)
+override fun onCreate(s: Bundle?) {
+    super.onCreate(s)
+    b = ActivityBienvenidaBinding.inflate(layoutInflater)
+    setContentView(b.root)
 
-        // ── Cargar todos los datos persistidos al arrancar ─────────────────
-        cargarDatosPersistidos()
+    cargarDatosPersistidos()
 
-        val logo = SpannableString("SignalOne")
-        logo.setSpan(ForegroundColorSpan(Color.parseColor("#B91C1C")), 6, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-        b.tvLogo.text = logo
-
-        b.btnComenzar.setOnClickListener { startActivity(Intent(this, RegistroActivity::class.java)) }
-        b.tvLoginLink.setOnClickListener { startActivity(Intent(this, LoginActivity::class.java)) }
+    // Verificar sesión activa con Firebase
+    val firebaseUser = com.google.firebase.auth.FirebaseAuth.getInstance().currentUser
+    if (firebaseUser != null) {
+        AppState.nombreUsuario = (firebaseUser.displayName
+            ?: UserPreferences.getNombreGuardado(this)).split(" ").first()
+        startActivity(
+            Intent(this, PrincipalActivity::class.java)
+                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        )
+        return
     }
+
+    val logo = SpannableString("SignalOne")
+    logo.setSpan(ForegroundColorSpan(Color.parseColor("#B91C1C")), 6, 9, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+    b.tvLogo.text = logo
+
+    b.btnComenzar.setOnClickListener { startActivity(Intent(this, RegistroActivity::class.java)) }
+    b.tvLoginLink.setOnClickListener { startActivity(Intent(this, LoginActivity::class.java)) }
+}
 
     private fun cargarDatosPersistidos() {
         // Contactos guardados (si existen, reemplazar los defaults)

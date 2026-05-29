@@ -4,15 +4,20 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.signalone.app.databinding.ActivityRegistroBinding
 
 class RegistroActivity : AppCompatActivity() {
     private lateinit var b: ActivityRegistroBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
         b = ActivityRegistroBinding.inflate(layoutInflater)
         setContentView(b.root)
+
+        auth = FirebaseAuth.getInstance()
 
         b.btnCrear.setOnClickListener {
             val nombre  = b.etNombre.text.toString().trim()
@@ -30,24 +35,32 @@ class RegistroActivity : AppCompatActivity() {
                 pass != confirm ->
                     snack("Las contraseñas no coinciden")
                 else -> {
-                    // Guardar cuenta en SharedPreferences
-                    UserPreferences.guardarCuenta(this, nombre, correo, pass)
+                    auth.createUserWithEmailAndPassword(correo, pass)
+                        .addOnSuccessListener { result ->
+                            // Guardar nombre en el perfil de Firebase
+                            val update = UserProfileChangeRequest.Builder()
+                                .setDisplayName(nombre)
+                                .build()
+                            result.user?.updateProfile(update)
 
-                    // Cargar nombre en AppState para la sesión actual
-                    AppState.nombreUsuario = nombre.split(" ").first()
+                            // Guardar localmente también
+                            UserPreferences.guardarCuenta(this, nombre, correo, pass)
+                            AppState.nombreUsuario = nombre.split(" ").first()
+                            UserPreferences.guardarSesionActiva(this, true)
 
-                    snack("¡Cuenta creada exitosamente!")
-
-                    // Ir a la pantalla principal
-                    startActivity(
-                        Intent(this, PrincipalActivity::class.java)
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-                    )
+                            startActivity(
+                                Intent(this, PrincipalActivity::class.java)
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            )
+                        }
+                        .addOnFailureListener { e ->
+                            snack("Error: ${e.localizedMessage}")
+                        }
                 }
             }
         }
 
-        b.btnGoogle.setOnClickListener { snack("Google OAuth no configurado en demo") }
+        b.btnGoogle.setOnClickListener { snack("Google Sign-In próximamente") }
 
         b.tvIrLogin.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -55,5 +68,6 @@ class RegistroActivity : AppCompatActivity() {
         }
     }
 
-    private fun snack(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun snack(msg: String) =
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }

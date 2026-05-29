@@ -52,6 +52,8 @@ class PrincipalActivity : AppCompatActivity(), SensorEventListener {
 
     private val notifPermLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission()) {}
+    private val smsPermLauncher = registerForActivityResult(
+    ActivityResultContracts.RequestPermission()) {}
 
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
@@ -75,22 +77,34 @@ class PrincipalActivity : AppCompatActivity(), SensorEventListener {
         b.btnContactos.setOnClickListener { startActivity(Intent(this, ContactosActivity::class.java)) }
         b.btnHistorial.setOnClickListener { startActivity(Intent(this, HistorialActivity::class.java)) }
         b.btnDiscreto.setOnClickListener  { startActivity(Intent(this, ModoDiscretoActivity::class.java)) }
+        b.tvCerrarSesion.setOnClickListener {com.google.firebase.auth.FirebaseAuth.getInstance().signOut()
+                                            UserPreferences.guardarSesionActiva(this, false)
+                                            startActivity(
+                                                  Intent(this, BienvenidaActivity::class.java)
+                                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                                         )
+                                            }
     }
 
-    private fun pedirPermisosNecesarios() {
-        if (!tienePermiso(Manifest.permission.ACCESS_FINE_LOCATION) &&
-            !tienePermiso(Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            locationPermLauncher.launch(arrayOf(
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION))
-        } else {
-            verificarUbicacionSistema()
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
-            !tienePermiso(Manifest.permission.POST_NOTIFICATIONS)) {
-            notifPermLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
-        }
+private fun pedirPermisosNecesarios() {
+    if (!tienePermiso(Manifest.permission.ACCESS_FINE_LOCATION) &&
+        !tienePermiso(Manifest.permission.ACCESS_COARSE_LOCATION)) {
+        locationPermLauncher.launch(arrayOf(
+            Manifest.permission.ACCESS_FINE_LOCATION,
+            Manifest.permission.ACCESS_COARSE_LOCATION))
+    } else {
+        verificarUbicacionSistema()
     }
+
+    if (!tienePermiso(Manifest.permission.SEND_SMS)) {
+        smsPermLauncher.launch(Manifest.permission.SEND_SMS)
+    }
+
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+        !tienePermiso(Manifest.permission.POST_NOTIFICATIONS)) {
+        notifPermLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+    }
+}
 
     private fun verificarUbicacionSistema() {
         val lm = getSystemService(LOCATION_SERVICE) as android.location.LocationManager
@@ -163,60 +177,88 @@ class PrincipalActivity : AppCompatActivity(), SensorEventListener {
         } catch (e: SecurityException) { lanzarAlerta(null, AppState.origenAlertaActual) }
     }
 
-    private fun lanzarAlerta(ubicacionUrl: String?, origen: String) {
-        AppState.ultimaUbicacionUrl = ubicacionUrl
-        AppState.registrarAlerta(origen, "⚠", "#B91C1C", ubicacionUrl)
+private fun lanzarAlerta(ubicacionUrl: String?, origen: String) {
+    AppState.ultimaUbicacionUrl = ubicacionUrl
+    AppState.registrarAlerta(origen, "⚠", "#B91C1C", ubicacionUrl)
+    UserPreferences.guardarHistorial(this, AppState.historial)
 
-        // Persistir historial inmediatamente
-        UserPreferences.guardarHistorial(this, AppState.historial)
+    val mensaje = if (ubicacionUrl != null)
+        "🚨 ALERTA DE EMERGENCIA 🚨\nNecesito ayuda. Mi ubicación:\n$ubicacionUrl"
+    else
+        "🚨 ALERTA DE EMERGENCIA 🚨\nNecesito ayuda. (Ubicación no disponible)"
 
-        val mensaje = if (ubicacionUrl != null)
-            "🚨 ALERTA DE EMERGENCIA 🚨\nNecesito ayuda. Mi ubicación:\n$ubicacionUrl"
+    // SMS
+    if (tienePermiso(Manifest.permission.SEND_SMS)) {
+        val smsManager = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+            getSystemService(SmsManager::class.java)
         else
-            "🚨 ALERTA DE EMERGENCIA 🚨\nNecesito ayuda. (Ubicación no disponible)"
+            @Suppress("DEPRECATION") SmsManager.getDefault()
 
-        // SMS a todos
-        val smsManager = SmsManager.getDefault()
         AppState.contactos.forEach { c ->
-            try { smsManager.sendTextMessage(c.telefono, null, mensaje, null, null) }
-            catch (e: Exception) {}
+            val telefonoLimpio = c.telefono.replace(Regex("[^\\d+]"), "")
+            try {
+                smsManager?.sendTextMessage(telefonoLimpio, null, mensaje, null, null)
+            } catch (e: Exception) {
+                Toast.makeText(this, "Error SMS: ${e.message}", Toast.LENGTH_LONG).show()
+            }
         }
-
-        // WhatsApp manejado en AlertaActivaActivity con delay visual
-        startActivity(Intent(this, AlertaActivaActivity::class.java))
+    } else {
+        Toast.makeText(this, "Sin permiso SMS", Toast.LENGTH_LONG).show()
     }
+
+    // WhatsApp
+    AppState.contactos.forEach { c ->
+        try {
+            val numero = c.telefono.replace(Regex("[^\\d+]"), "")
+            val intent = Intent(Intent.ACTION_VIEW).apply {
+                data = Uri.parse("https://wa.me/$numero?text=${Uri.encode(mensaje)}")
+                setPackage("com.whatsapp")
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(intent)
+        } catch (e: Exception) {
+            // WhatsApp no instalado, SMS fue enviado igual
+        }
+    }
+
+    startActivity(Intent(this, AlertaActivaActivity::class.java))
+}
 
     private fun tienePermiso(p: String) =
         ContextCompat.checkSelfPermission(this, p) == PackageManager.PERMISSION_GRANTED
 
-    override fun onResume() {
-        super.onResume()
-        acelerometro?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_UI) }
+ override fun onResume() {
+    super.onResume()
 
-        if (AppState.modoDiscretoActivo && AppState.bloqueadoActivo)
-            PanicService.start(this)
-        else if (!AppState.modoDiscretoActivo)
-            PanicService.stop(this)
+    AppState.contactos.clear()
+    AppState.contactos.addAll(UserPreferences.cargarContactos(this))
 
-        val nombre = AppState.nombreUsuario
-        b.tvNombreUsuario.text = nombre
-        b.tvAvatar.text = if (nombre.isNotEmpty()) nombre[0].uppercaseChar().toString() else "U"
+    acelerometro?.let { sensorManager.registerListener(this, it, SensorManager.SENSOR_DELAY_UI) }
 
-        if (AppState.modoDiscretoActivo) {
-            val partes = mutableListOf<String>()
-            if (AppState.volumenActivo) partes.add("vol ×5")
-            if (AppState.agitarActivo)  partes.add("agitar")
-            b.tvBannerTexto.text = "Modo discreto activo — ${partes.joinToString(" o ")} = alerta inmediata"
-            b.tvInstruccion.visibility = View.VISIBLE
-            val instrucciones = mutableListOf<String>()
-            if (AppState.volumenActivo) instrucciones.add("botón de volumen ×5")
-            if (AppState.agitarActivo)  instrucciones.add("agitar dispositivo")
-            b.tvInstruccion.text = if (instrucciones.isNotEmpty()) "o ${instrucciones.joinToString(" / ")}" else ""
-        } else {
-            b.tvBannerTexto.text = "Modo discreto inactivo"
-            b.tvInstruccion.visibility = View.INVISIBLE
-        }
+    if (AppState.modoDiscretoActivo && AppState.bloqueadoActivo)
+        PanicService.start(this)
+    else if (!AppState.modoDiscretoActivo)
+        PanicService.stop(this)
+
+    val nombre = AppState.nombreUsuario
+    b.tvNombreUsuario.text = nombre
+    b.tvAvatar.text = if (nombre.isNotEmpty()) nombre[0].uppercaseChar().toString() else "U"
+
+    if (AppState.modoDiscretoActivo) {
+        val partes = mutableListOf<String>()
+        if (AppState.volumenActivo) partes.add("vol ×5")
+        if (AppState.agitarActivo)  partes.add("agitar")
+        b.tvBannerTexto.text = "Modo discreto activo — ${partes.joinToString(" o ")} = alerta inmediata"
+        b.tvInstruccion.visibility = View.VISIBLE
+        val instrucciones = mutableListOf<String>()
+        if (AppState.volumenActivo) instrucciones.add("botón de volumen ×5")
+        if (AppState.agitarActivo)  instrucciones.add("agitar dispositivo")
+        b.tvInstruccion.text = if (instrucciones.isNotEmpty()) "o ${instrucciones.joinToString(" / ")}" else ""
+    } else {
+        b.tvBannerTexto.text = "Modo discreto inactivo"
+        b.tvInstruccion.visibility = View.INVISIBLE
     }
+}
 
     override fun onPause() {
         super.onPause()

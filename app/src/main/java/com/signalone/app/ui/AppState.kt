@@ -22,11 +22,7 @@ data class AlertaHistorial(
 )
 
 object AppState {
-    val contactos = mutableListOf(
-        Contacto("Mamá",        "+57 310 000 0001", Color.parseColor("#DC2626")),
-        Contacto("Hermana",     "+57 311 000 0002", Color.parseColor("#059669")),
-        Contacto("Amiga Laura", "+57 312 000 0003", Color.parseColor("#2563EB")),
-    )
+    val contactos = mutableListOf<Contacto>()
 
     val avatarColors = listOf(
         Color.parseColor("#DC2626"), Color.parseColor("#059669"),

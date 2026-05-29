@@ -48,12 +48,18 @@ class ModoDiscretoActivity : AppCompatActivity() {
         }
     }
 
-    private fun persistir() {
-        UserPreferences.guardarModoDiscreto(
-            this,
-            AppState.volumenActivo,
-            AppState.agitarActivo,
-            AppState.bloqueadoActivo
-        )
+private fun persistir() {
+    UserPreferences.guardarModoDiscreto(
+        this,
+        AppState.volumenActivo,
+        AppState.agitarActivo,
+        AppState.bloqueadoActivo
+    )
+    // Iniciar o detener el servicio según el estado
+    if (AppState.agitarActivo || AppState.bloqueadoActivo) {
+        PanicService.start(this)
+    } else {
+        PanicService.stop(this)
     }
+}
 }

@@ -1,47 +1,39 @@
 package com.signalone.app.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.signalone.app.databinding.ActivityRecuperarBinding
 
 class RecuperarActivity : AppCompatActivity() {
     private lateinit var b: ActivityRecuperarBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(s: Bundle?) {
         super.onCreate(s)
         b = ActivityRecuperarBinding.inflate(layoutInflater)
         setContentView(b.root)
 
-        b.tvVolver.setOnClickListener { finish() }
+        auth = FirebaseAuth.getInstance()
 
         b.btnEnviar.setOnClickListener {
-            val correoIngresado = b.etCorreo.text.toString().trim()
-
-            if (correoIngresado.isEmpty()) {
-                snack("Ingresa tu correo electrónico")
+            val correo = b.etCorreo.text.toString().trim()
+            if (correo.isEmpty()) {
+                snack("Ingresa tu correo")
                 return@setOnClickListener
             }
-
-            val correoGuardado = UserPreferences.getCorreoGuardado(this)
-
-            if (correoGuardado.isEmpty()) {
-                snack("No hay cuenta registrada con ese correo")
-            } else if (correoIngresado.lowercase() == correoGuardado) {
-                // Correo coincide → mostrar confirmación
-                b.layoutConfirm.visibility = View.VISIBLE
-                snack("Correo verificado. En una app real se enviaría un enlace.")
-            } else {
-                snack("No encontramos una cuenta con ese correo")
-            }
-        }
-
-        b.tvIrLogin.setOnClickListener {
-            startActivity(Intent(this, LoginActivity::class.java)); finish()
+            auth.sendPasswordResetEmail(correo)
+                .addOnSuccessListener {
+                    snack("Correo de recuperación enviado")
+                    finish()
+                }
+                .addOnFailureListener { e ->
+                    snack("Error: ${e.localizedMessage}")
+                }
         }
     }
 
-    private fun snack(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    private fun snack(msg: String) =
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 }

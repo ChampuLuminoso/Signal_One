@@ -51,6 +51,20 @@ object UserPreferences {
     fun getCorreoGuardado(context: Context) =
         context.getSharedPreferences(PREF_USER, Context.MODE_PRIVATE).getString(KEY_CORREO, "") ?: ""
 
+    fun guardarSesionActiva(context: Context, activa: Boolean) {
+    context.getSharedPreferences(PREF_USER, Context.MODE_PRIVATE).edit {
+        putBoolean("sesion_activa", activa)
+         }
+     }
+
+    fun haySesionActiva(context: Context): Boolean =
+    context.getSharedPreferences(PREF_USER, Context.MODE_PRIVATE)
+        .getBoolean("sesion_activa", false)
+
+    fun getNombreGuardado(context: Context): String =
+    context.getSharedPreferences(PREF_USER, Context.MODE_PRIVATE)
+        .getString(KEY_NOMBRE, "Usuario") ?: "Usuario"
+
     // ═══════════════════════════════════════════════════════════════════════
     // CONTACTOS
     // ═══════════════════════════════════════════════════════════════════════
